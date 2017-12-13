@@ -24,7 +24,9 @@ gulp.task('sass', function() {
 gulp.task('concat', function() {
     return gulp.src([
             './app/javascript/jquery-3.2.1.min.js',
-            './app/javas cript/burger.js'
+            './app/javascript/burger.js',
+            './app/javascript/slider.js',
+            './app/javascript/lightbox.js'
         ])
         .pipe(concat('production.js'))
         .pipe(gulp.dest('./app/js'));
