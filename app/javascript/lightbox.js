@@ -47,12 +47,17 @@
  * Etape 1 : récupérer index de puce cliquée et l'affecter à indexImg
  * Etape 2 : appeler changeImg() et activePuce()
  * 
+ * 
+ * AFFICHER LES LEGENDES DYNAMIQUEMENT DANS LA LIGHTBOX
+ * Etape 1 : récupérer valeur de l'attr data-legend
+ * Etape 2 : insérer le contenu textuel dans .lightbox figcaption
+ * 
  */
 'use strict';
 
 $(function() {
 
-    let newSrc, nbImg, indexImg, listPuces;
+    let newSrc, nbImg, indexImg, listPuces, legend;
 
     nbImg = $('.galerie img').length;
 
@@ -78,10 +83,16 @@ $(function() {
         list.eq(indexImg).addClass('puce-active');
     }
 
+    changeLegend = () => {
+        legend = $('.galerie img').eq(indexImg).attr('data-legend');
+        $('.lightbox figcaption').text(legend);
+    }
+
     $('.galerie img').click(function() {
         indexImg = $('.galerie img').index($(this));
         changeImg();
         activePuce();
+        changeLegend();
         $('.lightbox').fadeIn().css({ 'display': 'flex' });
     });
 
@@ -92,18 +103,21 @@ $(function() {
     $('.cadre .icon-navigate_next').click(function() {
         indexImg = (indexImg + 1) % nbImg;
         changeImg();
+        changeLegend();
         activePuce();
     });
 
     $('.cadre .icon-navigate_before').click(function() {
         indexImg = ((indexImg - 1) + nbImg) % nbImg;
         changeImg();
+        changeLegend();
         activePuce();
     });
 
     $('.lightbox li').click(function() {
         indexImg = $('.lightbox li').index($(this));
         changeImg();
+        changeLegend();
         activePuce();
     });
 
