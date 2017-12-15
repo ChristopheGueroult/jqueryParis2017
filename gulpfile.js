@@ -26,7 +26,9 @@ gulp.task('concat', function() {
             './app/javascript/jquery-3.2.1.min.js',
             './app/javascript/burger.js',
             './app/javascript/slider.js',
-            './app/javascript/lightbox.js'
+            './app/javascript/lightbox.js',
+            './app/javascript/accordeon.js',
+            './app/javascript/form.js'
         ])
         .pipe(concat('production.js'))
         .pipe(gulp.dest('./app/js'));

@@ -57,68 +57,70 @@
 
 $(function() {
 
-    let newSrc, nbImg, indexImg, listPuces, legend;
+    (function() {
 
-    nbImg = $('.galerie img').length;
+        let newSrc, nbImg, indexImg, listPuces, legend;
 
-    changeImg = () => {
-        newSrc = $('.galerie img').eq(indexImg).attr('src');
-        $('.lightbox img').attr('src', newSrc);
-    }
+        nbImg = $('.galerie img').length;
 
-    generatePuces = () => {
-        listPuces = '<ul class="list-puces">';
-        for (let i = 0; i < nbImg; i++) {
-            listPuces += '<li></li>';
+        changeImg = () => {
+            newSrc = $('.galerie img').eq(indexImg).attr('src');
+            $('.lightbox img').attr('src', newSrc);
         }
-        listPuces += '</ul>';
-        $(".lightbox .cadre").append(listPuces);
-    }
 
-    generatePuces();
+        generatePuces = () => {
+            listPuces = '<ul class="list-puces">';
+            for (let i = 0; i < nbImg; i++) {
+                listPuces += '<li></li>';
+            }
+            listPuces += '</ul>';
+            $(".lightbox .cadre").append(listPuces);
+        }
 
-    activePuce = () => {
-        let list = $('.lightbox ul li');
-        list.removeClass('puce-active');
-        list.eq(indexImg).addClass('puce-active');
-    }
+        generatePuces();
 
-    changeLegend = () => {
-        legend = $('.galerie img').eq(indexImg).attr('data-legend');
-        $('.lightbox figcaption').text(legend);
-    }
+        activePuce = () => {
+            let list = $('.lightbox ul li');
+            list.removeClass('puce-active');
+            list.eq(indexImg).addClass('puce-active');
+        }
 
-    $('.galerie img').click(function() {
-        indexImg = $('.galerie img').index($(this));
-        changeImg();
-        activePuce();
-        changeLegend();
-        $('.lightbox').fadeIn().css({ 'display': 'flex' });
-    });
+        changeLegend = () => {
+            legend = $('.galerie img').eq(indexImg).attr('data-legend');
+            $('.lightbox figcaption').text(legend);
+        }
 
-    $('.cadre .icon-close').click(function() {
-        $('.lightbox').fadeOut();
-    });
+        $('.galerie img').click(function() {
+            indexImg = $('.galerie img').index($(this));
+            changeImg();
+            activePuce();
+            changeLegend();
+            $('.lightbox').fadeIn().css({ 'display': 'flex' });
+        });
 
-    $('.cadre .icon-navigate_next').click(function() {
-        indexImg = (indexImg + 1) % nbImg;
-        changeImg();
-        changeLegend();
-        activePuce();
-    });
+        $('.cadre .icon-close').click(function() {
+            $('.lightbox').fadeOut();
+        });
 
-    $('.cadre .icon-navigate_before').click(function() {
-        indexImg = ((indexImg - 1) + nbImg) % nbImg;
-        changeImg();
-        changeLegend();
-        activePuce();
-    });
+        $('.cadre .icon-navigate_next').click(function() {
+            indexImg = (indexImg + 1) % nbImg;
+            changeImg();
+            changeLegend();
+            activePuce();
+        });
 
-    $('.lightbox li').click(function() {
-        indexImg = $('.lightbox li').index($(this));
-        changeImg();
-        changeLegend();
-        activePuce();
-    });
+        $('.cadre .icon-navigate_before').click(function() {
+            indexImg = ((indexImg - 1) + nbImg) % nbImg;
+            changeImg();
+            changeLegend();
+            activePuce();
+        });
 
+        $('.lightbox li').click(function() {
+            indexImg = $('.lightbox li').index($(this));
+            changeImg();
+            changeLegend();
+            activePuce();
+        });
+    })();
 });

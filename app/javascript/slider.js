@@ -42,48 +42,52 @@
 
 $(function() {
 
-    let acceptDefil = true;
-    let widthSlider = $('.slider').width();
+    (function() {
 
-    $('.slider li').width(widthSlider);
+        let acceptDefil = true;
+        let widthSlider = $('.slider').width();
 
-    $(window).resize(function() {
-        widthSlider = $('.slider').width();
         $('.slider li').width(widthSlider);
-    });
 
-    function slideNext() {
-        $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
-            $('.slider li:last').after($('.slider li:first'));
-            $(this).css({ 'left': 0 });
-            acceptDefil = true;
+        $(window).resize(function() {
+            widthSlider = $('.slider').width();
+            $('.slider li').width(widthSlider);
         });
-    }
 
-    function slidePrev() {
-        $('.slider ul').css({ 'left': -widthSlider });
-        $('.slider li:first').before($('.slider li:last'));
-        $('.slider ul').animate({ 'left': 0 }, 1000, function() {
-            acceptDefil = true;
+        function slideNext() {
+            $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
+                $('.slider li:last').after($('.slider li:first'));
+                $(this).css({ 'left': 0 });
+                acceptDefil = true;
+            });
+        }
+
+        function slidePrev() {
+            $('.slider ul').css({ 'left': -widthSlider });
+            $('.slider li:first').before($('.slider li:last'));
+            $('.slider ul').animate({ 'left': 0 }, 1000, function() {
+                acceptDefil = true;
+            });
+        }
+
+        let intervalID = setInterval(slideNext, 3000);
+
+        $('.slider .icon-navigate_before').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID);
+                slidePrev();
+            }
         });
-    }
 
-    let intervalID = setInterval(slideNext, 3000);
+        $('.slider .icon-navigate_next').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID);
+                slideNext();
+            }
+        });
 
-    $('.slider .icon-navigate_before').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID);
-            slidePrev();
-        }
-    });
-
-    $('.slider .icon-navigate_next').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID);
-            slideNext();
-        }
-    });
+    })();
 
 });
