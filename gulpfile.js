@@ -19,7 +19,7 @@ gulp.task('sass', function() {
 });
 
 /**
- * concatener js
+ * concat js
  */
 gulp.task('concat', function() {
     return gulp.src([
@@ -28,7 +28,8 @@ gulp.task('concat', function() {
             './app/javascript/slider.js',
             './app/javascript/lightbox.js',
             './app/javascript/accordeon.js',
-            './app/javascript/form.js'
+            './app/javascript/form.js',
+            './app/javascript/annuaire.js'
         ])
         .pipe(concat('production.js'))
         .pipe(gulp.dest('./app/js'));

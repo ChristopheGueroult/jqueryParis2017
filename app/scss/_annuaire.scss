@@ -1,0 +1,24 @@
+@if $use-annuaire==true {
+    .annuaire {
+        padding: 1rem 0;
+        .head {
+            background: lighten($color4, 20%);
+            p {
+                color: $color1;
+            }
+        }
+        .line:nth-child(even) {
+            background: darken($color1, 5%);
+        }
+        .line:hover,
+        .active {
+            background: darken($color1, 15%);
+        }
+        p {
+            padding-top: 1rem;
+        }
+        span:hover {
+            cursor: pointer;
+        }
+    }
+}
