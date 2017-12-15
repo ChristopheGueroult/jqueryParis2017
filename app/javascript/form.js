@@ -22,11 +22,14 @@
  * Etape 1 : si un seul champs required n'est pas rempli
  * - on annule l'envoi du formulaire
  * - on affiche .icon-close dans les champs non remplis
+<<<<<<< HEAD
  * Etape 2 : envoi des datas du formulaire avec ajax vers script php
  * 
  * FACTORISER LE CODE
  * Etape 1 : créer une fonction pour le changement des icons
  * et l'appeler dans notre code à chaque fois que nécessaire
+=======
+>>>>>>> 146c947da8ddde3e2c85bb77c7987ef0689a6876
  */
 
 'use strict';
